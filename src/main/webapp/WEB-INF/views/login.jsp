@@ -11,6 +11,7 @@
 <head>
     <title>Login Market</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>"/>
+    <link rel="icon" href="<c:url value="/resources/imgs/lg.png"/>" type="image/gif" sizes="16x16">
 </head>
 <body>
     <form action="/" method="post">
