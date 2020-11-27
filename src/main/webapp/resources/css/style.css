@@ -53,6 +53,11 @@ form .message {
     color: #b3b3b3;
     font-size: 12px;
 }
+form .danger {
+    margin-top: 10px;
+    color: #750000;
+    font-size: 12px;
+}
 form .message a {
     color:#750000;
     text-decoration: none;
