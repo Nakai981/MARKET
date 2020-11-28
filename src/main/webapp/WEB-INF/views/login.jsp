@@ -15,7 +15,7 @@
 </head>
 <body>
     <h3>${list}</h3>
-    <form name='loginForm' action="<c:url value='/j_spring_security_login' />" method="post">
+    <form name='loginForm' class="login-form"action="<c:url value='/j_spring_security_login' />" method="post">
         <div class="text-logo">
             <img src="<c:url value="/resources/imgs/lg.png"/>" width="60px"/>
             <h2>Sign Up Market Software</h2>

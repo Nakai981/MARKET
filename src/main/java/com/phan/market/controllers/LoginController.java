@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.reflect.Array;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,12 @@ public class LoginController {
         return "login";
     }
     @RequestMapping("/direction")
-    public String direction() {
+    public String direction(Principal principal, ModelMap modelMap) {
+        modelMap.addAttribute("user",principal.getName());
         return "direction";
+    }
+    @RequestMapping("/error")
+    public String error(){
+        return "error";
     }
 }

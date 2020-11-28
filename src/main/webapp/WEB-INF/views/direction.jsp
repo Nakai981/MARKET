@@ -11,13 +11,17 @@
 <head>
     <link rel="icon" href="<c:url value="/resources/imgs/lg.png"/>" type="image/gif" sizes="16x16">
     <title>Directional</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-    <a href="<c:url value="/admin"/>">Admin</a>
-    <a href="<c:url value="/user"/>">User</a>
-    <form action="<c:url value="/j_spring_security_logout" />" method="post">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <input type="submit" value="Logout"/>
-    </form>
+    <div class="ad-ur">
+        <p>Xin vui lòng điều hướng, ${user}</p>
+        <a href="<c:url value="/admin"/>">Admin</a>
+        <a href="<c:url value="/user"/>">User</a>
+        <form class="logout" action="<c:url value="/j_spring_security_logout" />" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
 </body>
 </html>

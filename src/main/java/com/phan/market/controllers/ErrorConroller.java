@@ -9,10 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/error")
+
 public class ErrorConroller {
-    @GetMapping
-    public String error(){
-        return "error";
-    }
+   
 }
