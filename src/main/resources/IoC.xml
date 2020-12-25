@@ -11,7 +11,7 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
         <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
         <!-- S2-Install-Start: INSERT DB SERVER HERE -->
-        <property name="url" value="jdbc:sqlserver://localhost:1433;database=marketmini" />
+        <property name="url" value="jdbc:sqlserver://localhost:1433;database=QLST" />
         <!--        S2-Install-End:-->
         <property name="username" value="admin" />
         <!--        S2-Install-Start: INSERT DB PASSWORD HERE-->

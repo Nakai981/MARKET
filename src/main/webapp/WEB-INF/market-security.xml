@@ -26,9 +26,10 @@
 <!--                <user name="user" password="{noop}123456" authorities="ROLE_USER" />-->
 <!--            </user-service>-->
             <jdbc-user-service data-source-ref="dataSource"
-                users-by-username-query="select Username,Password,enabled from NhanVien where Username=?"
-                authorities-by-username-query="select NhanVien.Username, ChucVu.TenCV from NhanVien, ChucVu, NhanVien_ChucVu
-                where username =? and NhanVien.MaNV = NhanVien_ChucVu.MANV and NhanVien_ChucVu.MACV = ChucVu.MaCV"
+                users-by-username-query="select TEN_DANG_NHAP,MAT_KHAU,ENABLE from NHAN_VIEN where TEN_DANG_NHAP=?"
+                authorities-by-username-query="select NHAN_VIEN.TEN_DANG_NHAP, CHUC_VU.TEN_CV from NHAN_VIEN
+                                                inner join CHUC_VU on NHAN_VIEN.MA_CV = CHUC_VU.MA_CV
+                                                where NHAN_VIEN.TEN_DANG_NHAP=?"
             />
         </authentication-provider>
     </authentication-manager>

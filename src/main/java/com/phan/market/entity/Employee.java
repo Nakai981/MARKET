@@ -1,76 +1,133 @@
 package com.phan.market.entity;
 
+
 public class Employee {
-    private int maNV;
-    private String tenNV;
-    private int gioiTinh ;
-    private Long cmnd;
-    private Long soDienThoai;
-    private String diaChi;
-    private String username;
-    private String password;
+    private int id;
+    private String name;
+    private int gender;
+    private Long card;
+    private Long phone;
+    private String address;
+    private String user;
+    private String pass;
+    private int idPosition;
 
-    public int getMaNV() {
-        return maNV;
+    public Employee(int id, String name, int gender, Long card, Long phone, String address, String user, String pass, int idPosition) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.card = card;
+        this.phone = phone;
+        this.address = address;
+        this.user = user;
+        this.pass = pass;
+        this.idPosition = idPosition;
     }
 
-    public void setMaNV(int maNV) {
-        this.maNV = maNV;
+    public Employee(String name, int gender, Long card, Long phone, String address, String user, String pass, int idPosition) {
+        this.name = name;
+        this.gender = gender;
+        this.card = card;
+        this.phone = phone;
+        this.address = address;
+        this.user = user;
+        this.pass = pass;
+        this.idPosition = idPosition;
     }
 
-    public String getTenNV() {
-        return tenNV;
+    public Employee(int id, String name, int gender, Long card, Long phone, String address, String user, String pass) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.card = card;
+        this.phone = phone;
+        this.address = address;
+        this.user = user;
+        this.pass = pass;
     }
 
-    public void setTenNV(String tenNV) {
-        this.tenNV = tenNV;
+    public Employee(String name, int gender, Long card, Long phone, String address, String user, String pass) {
+        this.name = name;
+        this.gender = gender;
+        this.card = card;
+        this.phone = phone;
+        this.address = address;
+        this.user = user;
+        this.pass = pass;
     }
 
-    public int getGioiTinh() {
-        return gioiTinh;
+    public Employee() {
     }
 
-    public void setGioiTinh(int gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public int getId() {
+        return id;
     }
 
-    public Long getCmnd() {
-        return cmnd;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setCmnd(Long cmnd) {
-        this.cmnd = cmnd;
+    public String getName() {
+        return name;
     }
 
-    public Long getSoDienThoai() {
-        return soDienThoai;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setSoDienThoai(Long soDienThoai) {
-        this.soDienThoai = soDienThoai;
+    public int getGender() {
+        return gender;
     }
 
-    public String getDiaChi() {
-        return diaChi;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    public Long getCard() {
+        return card;
     }
 
-    public String getUsername() {
-        return username;
+    public void setCard(Long card) {
+        this.card = card;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Long getPhone() {
+        return phone;
     }
 
-    public String getPassword() {
-        return password;
+    public void setPhone(Long phone) {
+        this.phone = phone;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public int getIdPosition() {
+        return idPosition;
+    }
+
+    public void setIdPosition(int idPosition) {
+        this.idPosition = idPosition;
     }
 }

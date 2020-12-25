@@ -18,7 +18,7 @@
         </servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value></param-value>
+            <param-value>/WEB-INF/market-dispatcher.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -27,7 +27,7 @@
         <servlet-name>MarketMiniDispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <!-- Loads Spring Security config file -->
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
