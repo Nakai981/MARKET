@@ -1,9 +1,6 @@
 package com.phan.market.config;
 
-import com.phan.market.dao.DBConnection;
-import com.phan.market.dao.EmployeeDao;
-import com.phan.market.dao.ItemDao;
-import com.phan.market.dao.SupplierDao;
+import com.phan.market.dao.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,5 +21,17 @@ public class DBconfig {
     public static SupplierDao connectSupplierDao(){
         SupplierDao supplierDao = new SupplierDao(DBconfig.dbconnect().getJdbcTemplate());
         return supplierDao;
+    }
+    public static ImportCouponDao connectImportCouponDao(){
+        ImportCouponDao importCouponDao = new ImportCouponDao(DBconfig.dbconnect().getJdbcTemplate());
+        return importCouponDao;
+    }
+    public static BillDao connectBillDao(){
+        BillDao billDao = new BillDao(DBconfig.dbconnect().getJdbcTemplate());
+        return billDao;
+    }
+    public static ExpiryDateDao connectExpiryDateDao(){
+        ExpiryDateDao expiryDateDao = new ExpiryDateDao(DBconfig.dbconnect().getJdbcTemplate());
+        return expiryDateDao;
     }
 }

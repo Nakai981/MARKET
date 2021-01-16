@@ -33,5 +33,17 @@
         <put-attribute name="title" value="Nhà cung cấp" />
         <put-attribute name="body" value="/WEB-INF/views/admin-page/admin-supplier.jsp" />
     </definition>
+    <definition name="coupons" extends="admin_layout">
+        <put-attribute name="title" value="Nhập hàng" />
+        <put-attribute name="body" value="/WEB-INF/views/admin-page/admin-coupons.jsp" />
+    </definition>
+    <definition name="bill" extends="admin_layout">
+        <put-attribute name="title" value="Thông tin hóa đơn" />
+        <put-attribute name="body" value="/WEB-INF/views/admin-page/admin-bill.jsp" />
+    </definition>
+    <definition name="inventory" extends="admin_layout">
+        <put-attribute name="title" value="Thông tin kiểm kê" />
+        <put-attribute name="body" value="/WEB-INF/views/admin-page/admin-inventory.jsp" />
+    </definition>
 
 </tiles-definitions>

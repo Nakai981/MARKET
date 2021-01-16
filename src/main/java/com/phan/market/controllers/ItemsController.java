@@ -73,7 +73,7 @@ public class ItemsController {
         Item i = getItembyId(id);
         modelMap.addAttribute("item",i);
         modelMap.addAttribute("listItem",items);
-        modelMap.addAttribute("btnInsert","Sửa nhân viên");
+        modelMap.addAttribute("btnInsert","Sửa mặt hàng");
         return "items";
     }
     @GetMapping("/delete")

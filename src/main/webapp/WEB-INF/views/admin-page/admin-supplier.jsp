@@ -13,48 +13,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3>
-                        Danh sách nhà cung cấp
-                    </h3>
-                    <i class="fas fa-plus-square"></i>
-                </div>
-                <div class="card-content">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="i" items="${listSupplier}">
-                            <tr>
-
-                                <td> <c:out value = "${i.getName()}"/><p></td>
-                                <td> <c:out value = "${i.getPhone()}"/><p></td>
-                                <td> <c:out value = "${i.getAddress()}"/><p></td>
-                                <td><a style="color: #403866" href="/admin/supplier/update?id=${i.getId()}"><i class="fas fa-pen-alt"> </i></a></td>
-                                <td><a style="color: #bd4147"href="/admin/supplier/delete?id=${i.getId()}"><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-
-<%--                <c:forEach var="i" begin="1" end="${sizepage}">--%>
-<%--                    <a style="text-decoration: none; padding: 5px 10px; margin-top:45px;margin-left:5px;border:1px solid #1b93e1"href="/admin/account/page?page=${i}">${i}</a>--%>
-<%--                </c:forEach>--%>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-m-12 col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3>
-                        Thêm & Sửa Hàng hóa
+                        Thêm & Sửa nhà cung cấp
                     </h3>
                     <i class="fas fa-plus-square"></i>
                 </div>
@@ -122,6 +81,47 @@
                     </form>
 
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-m-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>
+                        Danh sách nhà cung cấp
+                    </h3>
+                    <i class="fas fa-plus-square"></i>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="i" items="${listSupplier}">
+                            <tr>
+
+                                <td> <c:out value = "${i.getName()}"/><p></td>
+                                <td> <c:out value = "${i.getPhone()}"/><p></td>
+                                <td> <c:out value = "${i.getAddress()}"/><p></td>
+                                <td><a style="color: #403866" href="/admin/supplier/update?id=${i.getId()}"><i class="fas fa-pen-alt"> </i></a></td>
+                                <td><a style="color: #bd4147"href="/admin/supplier/delete?id=${i.getId()}"><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
+<%--                <c:forEach var="i" begin="1" end="${sizepage}">--%>
+<%--                    <a style="text-decoration: none; padding: 5px 10px; margin-top:45px;margin-left:5px;border:1px solid #1b93e1"href="/admin/account/page?page=${i}">${i}</a>--%>
+<%--                </c:forEach>--%>
             </div>
         </div>
     </div>
