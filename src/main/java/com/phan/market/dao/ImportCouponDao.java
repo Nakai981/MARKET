@@ -33,4 +33,19 @@ public class ImportCouponDao {
         });
         return importCouponList;
     }
+    public List<ImportCoupon> selectCouponBySearch(String name){
+        List<ImportCoupon> importCouponList;
+        String query = "SELECT * FROM NHA_CUNG_CAP WHERE MA_CUNG_CAP='"+name+"'";
+
+        importCouponList = this.jdbcTemplate.query(query, new RowMapper<ImportCoupon>() {
+            @Override
+            public ImportCoupon mapRow(ResultSet resultSet, int i) throws SQLException {
+                ImportCoupon importCoupon = new ImportCoupon();
+                importCoupon.setId(resultSet.getInt(1));
+                importCoupon.setNameSupplier(resultSet.getString(2));
+                return importCoupon;
+            }
+        });
+        return importCouponList;
+    }
 }

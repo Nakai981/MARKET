@@ -8,6 +8,8 @@ public class ImportCoupon {
     private int count;
     private float priceCoupon;
 
+    public ImportCoupon() {
+    }
 
     public ImportCoupon(int id, String nameSupplier, String date, String nameItem, int count, float priceCoupon) {
         this.id = id;
