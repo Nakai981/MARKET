@@ -1,8 +1,6 @@
 package com.phan.market.controllers;
 
 import com.phan.market.config.DBconfig;
-import com.phan.market.entity.ImportCoupon;
-import com.phan.market.entity.Item;
 import com.phan.market.entity.Supplier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

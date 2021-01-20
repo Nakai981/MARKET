@@ -1,6 +1,5 @@
 package com.phan.market.dao;
 
-import com.phan.market.entity.Item;
 import com.phan.market.entity.Supplier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

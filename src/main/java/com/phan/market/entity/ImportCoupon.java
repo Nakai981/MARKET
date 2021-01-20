@@ -7,6 +7,32 @@ public class ImportCoupon {
     private String nameItem;
     private int count;
     private float priceCoupon;
+    private int idEmployee;
+    private String nameEmployee;
+
+    public String getNameEmployee() {
+        return nameEmployee;
+    }
+
+    public ImportCoupon(int id, String nameSupplier, String nameItem, int count, float priceCoupon) {
+        this.id = id;
+        this.nameSupplier = nameSupplier;
+        this.nameItem = nameItem;
+        this.count = count;
+        this.priceCoupon = priceCoupon;
+    }
+
+    public void setNameEmployee(String nameEmployee) {
+        this.nameEmployee = nameEmployee;
+    }
+
+    public int getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
+    }
 
     public ImportCoupon() {
     }

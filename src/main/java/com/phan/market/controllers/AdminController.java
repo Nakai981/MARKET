@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ public class AdminController {
     private List<Bill> bills;
     private int sumBill;
     private String txtDate1;
+    private String user;
 
     public void sumPrice(){
         sumBill=0;
@@ -28,9 +30,10 @@ public class AdminController {
     }
 
     @RequestMapping(value = {"/admin","/admin/home"})
-    public String admin(ModelMap modelMap) {
+    public String admin(ModelMap modelMap, Principal principal) {
         expiryDateList = DBconfig.connectExpiryDateDao().selectExpiry(1);
         id=1;
+        user = principal.getName();
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         txtDate1 = formatter.format(date);
@@ -40,6 +43,7 @@ public class AdminController {
         modelMap.addAttribute("sumBill",sumBill);
         modelMap.addAttribute("listExpiry",expiryDateList);
         modelMap.addAttribute("idd",id);
+        modelMap.addAttribute("user",user);
         return "home";
     }
     @RequestMapping("/admin/home/detail")
@@ -54,6 +58,7 @@ public class AdminController {
         modelMap.addAttribute("sumBill",sumBill);
         modelMap.addAttribute("idd",id);
         modelMap.addAttribute("listExpiry",expiryDateList);
+        modelMap.addAttribute("user",user);
         return "home";
     }
     @RequestMapping("/admin/home/date")
@@ -68,6 +73,7 @@ public class AdminController {
         modelMap.addAttribute("sumBill",sumBill);
         modelMap.addAttribute("idd",id);
         modelMap.addAttribute("listExpiry",expiryDateList);
+        modelMap.addAttribute("user",user);
         return "home";
     }
 

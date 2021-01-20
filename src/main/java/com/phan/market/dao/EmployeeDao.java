@@ -71,5 +71,18 @@ public class EmployeeDao {
             }
         });
     }
+    public Employee getIdEmpolyeeByName(String name) {
+        Employee emp;
+        String query = "SELECT MA_NV FROM NHAN_VIEN WHERE TEN_DANG_NHAP='"+name+"' AND ENABLE=1 AND MA_CV=1";
 
+        emp = this.jdbcTemplate.queryForObject(query, new RowMapper<Employee>() {
+            @Override
+            public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+                Employee emp = new Employee();
+                emp.setId(resultSet.getInt(1));
+                return emp;
+            }
+        });
+        return emp;
+    }
 }

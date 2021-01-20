@@ -1,15 +1,15 @@
 package com.phan.market.controllers;
 
 import com.phan.market.config.DBconfig;
-import com.phan.market.entity.Employee;
+import com.phan.market.entity.ExpiryDate;
 import com.phan.market.entity.Item;
+import com.phan.market.entity.Shipment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,18 +17,26 @@ import java.util.List;
 public class ItemsController {
 
     private List<Item> items;
+    private List<ExpiryDate> shipments;
     private int status;
-
+    private int statusShip=0;
+    private String idShipentOld;
+    private int updateShi;
     @GetMapping
     public String _default(ModelMap modelMap){
+         updateShi = 0;
         items = DBconfig.connectItemDao().itemDaoList();
+        shipments=DBconfig.connectExpiryDateDao().selectShipment(-1);
         modelMap.addAttribute("listItem",items);
+        modelMap.addAttribute("listShipment",shipments);
+        modelMap.addAttribute("statusUpdate",updateShi);
         modelMap.addAttribute("btnInsert","Thêm mới");
+        modelMap.addAttribute("btnInsert1","Thêm mới");
         return "items";
     }
     @GetMapping("/function")
-    public String _default_function(ModelMap modelMap,@RequestParam String txtCode,@RequestParam String txtTen,@RequestParam String txtDonVi){
-        Item i = new Item(txtCode,txtTen,txtDonVi);
+    public String _default_function(ModelMap modelMap, @RequestParam String txtId, @RequestParam String txtTen,@RequestParam String txtDonVi){
+        Item i = new Item(txtId,txtTen,txtDonVi);
         String html;
         if(status == 0){
             //Insert
@@ -45,7 +53,8 @@ public class ItemsController {
         modelMap.addAttribute("btnInsert","Thêm mới");
         modelMap.addAttribute("listItem",items);
         modelMap.addAttribute("alert",html);
-        return "items";
+        modelMap.addAttribute("listShipment",shipments);
+        return "redirect:/admin/items";
     }
     public void updateAllist(Item emp, List<Item> emps){
 
@@ -71,9 +80,12 @@ public class ItemsController {
     public String _default_update(ModelMap modelMap, @RequestParam String id){
         status = 1;
         Item i = getItembyId(id);
+        modelMap.addAttribute("ds2","display: none");
+        modelMap.addAttribute("ds1","display: inline !important");
         modelMap.addAttribute("item",i);
         modelMap.addAttribute("listItem",items);
         modelMap.addAttribute("btnInsert","Sửa mặt hàng");
+        modelMap.addAttribute("listShipment",shipments);
         return "items";
     }
     @GetMapping("/delete")
@@ -87,7 +99,86 @@ public class ItemsController {
         items = DBconfig.connectItemDao().itemDaoList();
         modelMap.addAttribute("listItem",items);
         modelMap.addAttribute("btnInsert","Thêm mới");
+        modelMap.addAttribute("listShipment",shipments);
         return "items";
     }
+    private int idItems=-1;
+    @GetMapping("/addShipment")
+    public String _addShipment(ModelMap modelMap, @RequestParam int id){
+        updateShi++;
+        shipments=DBconfig.connectExpiryDateDao().selectShipment(id);
+        modelMap.addAttribute("ds3","display: inline !important");
+        modelMap.addAttribute("listItem",items);
+        modelMap.addAttribute("listShipment",shipments);
+        idItems=id;
+        modelMap.addAttribute("idShipment",idItems);
+        modelMap.addAttribute("btnInsert1","Thêm mới");
+        modelMap.addAttribute("statusUpdate",updateShi);
+        return "items";
+    }
+    @GetMapping("/shipment/function")
+    public String _functionShipment(ModelMap modelMap, @RequestParam String txtMaLo,@RequestParam float txtGiaBan,@RequestParam String txtHSD,@RequestParam String txtIdItem){
+        Shipment shipment = new Shipment(txtMaLo,txtHSD,txtGiaBan,txtIdItem);
+        if(statusShip==0){
+            try {
+                int index = DBconfig.connectExpiryDateDao().insertShipment(shipment);
+                shipments=DBconfig.connectExpiryDateDao().selectShipment(idItems);
+            }catch (Exception ex){
 
+            }
+        }else{
+            try {
+                int index = DBconfig.connectExpiryDateDao().updateShipment(shipment,idShipentOld);
+                shipments=DBconfig.connectExpiryDateDao().selectShipment(idItems);
+                statusShip=0;
+                idShipentOld="";
+            }catch (Exception ex){
+
+            }
+        }
+
+
+        modelMap.addAttribute("ds3","display: inline !important");
+        modelMap.addAttribute("listItem",items);
+        modelMap.addAttribute("listShipment",shipments);
+        modelMap.addAttribute("btnInsert1","Thêm mới");
+        modelMap.addAttribute("statusUpdate",updateShi);
+        return "items";
+    }
+    @GetMapping("/shipment/update")
+    public String _update(ModelMap modelMap, @RequestParam String idShipment1){
+        statusShip=1;
+        idShipentOld=idShipment1;
+        Shipment sp1 = new Shipment();
+        for(ExpiryDate sp:shipments){
+            if(sp.getId().equals(idShipment1)){
+                 sp1.setId(sp.getId());sp1.setExpiryDate(sp.getExpiryDate());sp1.setPrice(sp.getPrice());
+            }
+        }
+        modelMap.addAttribute("sp1",sp1);
+        modelMap.addAttribute("idShipment1",idShipment1);
+        modelMap.addAttribute("ds3","display: inline !important");
+        modelMap.addAttribute("listItem",items);
+        modelMap.addAttribute("listShipment",shipments);
+        modelMap.addAttribute("btnInsert1","Chỉnh sửa");
+        modelMap.addAttribute("statusUpdate",updateShi);
+        return "items";
+    }
+    @GetMapping("/shipment/del")
+    public String _shipmentDel(ModelMap modelMap, @RequestParam String idShipment1){
+        try {
+            int index = DBconfig.connectExpiryDateDao().delShipment(idShipment1);
+            for(int i=0;i<shipments.size();i++){
+                if(shipments.get(i).getId().equals(idShipment1)){
+                    shipments.remove(i);
+                }
+            }
+        }catch (Exception ex){}
+        modelMap.addAttribute("ds3","display: inline !important");
+        modelMap.addAttribute("listItem",items);
+        modelMap.addAttribute("listShipment",shipments);
+        modelMap.addAttribute("btnInsert1","Chỉnh sửa");
+        modelMap.addAttribute("statusUpdate",updateShi);
+        return "items";
+    }
 }

@@ -14,6 +14,11 @@ public class Item {
         this.unit = unit;
     }
 
+    public Item(String name, String unit) {
+        this.name = name;
+        this.unit = unit;
+    }
+
     public String getId() {
         return id;
     }
