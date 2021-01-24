@@ -22,6 +22,7 @@ public class ItemsController {
     private int statusShip=0;
     private String idShipentOld;
     private int updateShi;
+
     @GetMapping
     public String _default(ModelMap modelMap){
          updateShi = 0;
@@ -100,7 +101,7 @@ public class ItemsController {
         modelMap.addAttribute("listItem",items);
         modelMap.addAttribute("btnInsert","Thêm mới");
         modelMap.addAttribute("listShipment",shipments);
-        return "items";
+        return "redirect:/admin/items";
     }
     private int idItems=-1;
     @GetMapping("/addShipment")
@@ -117,8 +118,8 @@ public class ItemsController {
         return "items";
     }
     @GetMapping("/shipment/function")
-    public String _functionShipment(ModelMap modelMap, @RequestParam String txtMaLo,@RequestParam float txtGiaBan,@RequestParam String txtHSD,@RequestParam String txtIdItem){
-        Shipment shipment = new Shipment(txtMaLo,txtHSD,txtGiaBan,txtIdItem);
+    public String _functionShipment(ModelMap modelMap, @RequestParam String txtMaLo,@RequestParam float txtGiaBan,@RequestParam String txtHSD){
+        Shipment shipment = new Shipment(txtMaLo,txtHSD,txtGiaBan,String.valueOf(idItems));
         if(statusShip==0){
             try {
                 int index = DBconfig.connectExpiryDateDao().insertShipment(shipment);

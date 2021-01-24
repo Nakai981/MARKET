@@ -2,6 +2,7 @@ package com.phan.market.dao;
 
 import com.phan.market.entity.Bill;
 import com.phan.market.entity.Employee;
+import com.phan.market.entity.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -73,5 +74,64 @@ public class BillDao {
             }
         });
         return bills;
+    }
+    public int addBill(int id){
+        String query = "INSERT INTO HOA_DON_BAN(ENABLE,MA_NV) VALUES (1,'"+id+"')";
+        return this.jdbcTemplate.update(query);
+    }
+    public int addDetailBill(Bill bill,int idBill){
+        String query = "INSERT INTO CHI_TIET_HOA_DON VALUES("+bill.getCount()+","+idBill+",'"+bill.getName_employee()+"')";
+        return this.jdbcTemplate.update(query);
+    }
+    public Bill getIdBill(){
+        Bill bill;
+        String query = "SELECT TOP 1 MA_HD FROM HOA_DON_BAN WHERE ENABLE=1 ORDER BY MA_HD DESC";
+        bill = this.jdbcTemplate.queryForObject(query, new RowMapper<Bill>() {
+            @Override
+            public Bill mapRow(ResultSet resultSet, int i) throws SQLException {
+                Bill bill = new Bill();
+                bill.setId(resultSet.getInt(1));
+                return bill;
+            }
+        });
+        return bill;
+    }
+
+    public List<Bill> getBillbyIdShipment(String id){
+        List<Bill> bills;
+        String query = "EXEC TIM_KIEM_SAN_PHAM_THEO_MALO @id="+id;
+
+        bills = this.jdbcTemplate.query(query, new RowMapper<Bill>() {
+            @Override
+            public Bill mapRow(ResultSet resultSet, int i) throws SQLException {
+                Bill bill = new Bill();
+                bill.setName_employee(resultSet.getString(3));
+                bill.setName_item(resultSet.getString(1));
+                bill.setPrice(resultSet.getFloat(2));
+                return bill;
+            }
+        });
+        return bills;
+    }
+
+    public List<Bill> selectItemBySearchAPI(String name){
+        List<Bill> billList;
+        String query = "SELECT TOP 5 LO_HANG.MA_LO,MAT_HANG.TEN_MH,LO_HANG.GIA_BAN FROM MAT_HANG\n" +
+                "\t\tINNER JOIN LO_HANG \n" +
+                "\t\tON MAT_HANG.MA_MH = LO_HANG.MA_MH\n" +
+                "\t\tWHERE  LO_HANG.MA_LO LIKE '%"+name+"%'  OR  MAT_HANG.TEN_MH LIKE '%"+name+"%' AND LO_HANG.ENABLE=1 AND LO_HANG.SL>0";
+        billList = this.jdbcTemplate.query(query, new RowMapper<Bill>() {
+            @Override
+            public Bill mapRow(ResultSet resultSet, int i) throws SQLException {
+                Bill bill = new Bill();
+                //Mã lô
+                bill.setName_employee(resultSet.getString(1));
+                bill.setName_item(resultSet.getString(2));
+                //Tên lô
+                bill.setPrice(resultSet.getFloat(3));
+                return bill;
+            }
+        });
+        return billList;
     }
 }

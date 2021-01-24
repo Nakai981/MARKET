@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin-page/admin-coupons.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin-page" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin-page/admin-items.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin-page" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin-page/admin-position.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin-page" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/account.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/error.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login/login-form.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login" />
+      </map>
+    </option>
+  </component>
+</project>

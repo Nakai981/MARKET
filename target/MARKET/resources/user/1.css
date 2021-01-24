@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.banner{
+ 	background: url(images/2.jpg);
+ 	background-repeat: no-repeat;
+ 	background-position: center;
+ 	height: 450px;
+}
+::selection{
+  color: #fff;
+  background: #664AFF;
+}
+
+.wrapper{
+  max-width: 700px;
+  margin: -420px auto;
+}
+
+.wrapper .search-input {
+  background: #fff;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 2px 10px 11px 3px rgb(0 0 0 / 14%);
+}
+ .autocom-box-1{
+  margin-top: 20px;
+  background-color: #efefef;
+  box-shadow: 2px 10px 11px 3px rgb(0 0 0 / 14%);
+}
+.autocom-box-1 table th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.autocom-box-1 .box-1 {
+  padding: 50px;
+  background-color: #fff;
+}
+.autocom-box-1 table  td input[type="number"]{
+  width: 30%;
+  text-align: center;
+}
+
+.wrapper .menu{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu a{
+  margin-right: 30px;
+  text-decoration: none;
+  color: #644bff;
+  font-size: 14px;
+  background-color: #fff;
+  padding: 7px 20px;
+  border-radius: 4px;
+}
+.menu a:hover{
+    background-color: black;
+}
+.menu form input[type='submit']:hover{
+    background: #fff;
+  color: #644bff;
+}
+.menu form input[type='submit']{
+  color: #fff;
+  font-size: 14px;
+  background-color: #c80000;
+  padding: 7px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+.menu form span{
+  color: #fff;
+}
+.search-input input{
+  height: 55px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 16px;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+}
+
+.search-input.active input{
+  border-radius: 5px 5px 0 0;
+}
+
+.search-input .autocom-box{
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
+  position: absolute;
+  background: #fff;
+  width: 100%;
+}
+
+.search-input.active .autocom-box{
+
+  padding: 10px 8px;
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+.autocom-box li{
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+}
+
+.search-input.active .autocom-box li{
+  display: block;
+}
+.autocom-box li:hover{
+  background: #efefef;
+}
+
+.search-input .icon{
+  position: absolute;
+  right: 0px;
+  top: 17px;
+  height: 55px;
+  width: 55px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: #644bff;
+  cursor: pointer;
+}

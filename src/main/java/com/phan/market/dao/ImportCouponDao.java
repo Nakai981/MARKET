@@ -1,6 +1,7 @@
 package com.phan.market.dao;
 
 import com.phan.market.entity.Employee;
+import com.phan.market.entity.ImpCouponDetail;
 import com.phan.market.entity.ImportCoupon;
 import com.phan.market.entity.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -71,18 +72,19 @@ public class ImportCouponDao {
         });
         return importCouponList;
     }
-    public List<ImportCoupon> importDetailCouponList(int id){
-        List<ImportCoupon> importCouponList;
+    public List<ImpCouponDetail> importDetailCouponList(int id){
+        List<ImpCouponDetail> importCouponList;
         String query = "EXEC DS_CHI_TIET_PHIEU_NHAP @id="+id;
 
-        importCouponList = this.jdbcTemplate.query(query, new RowMapper<ImportCoupon>() {
+        importCouponList = this.jdbcTemplate.query(query, new RowMapper<ImpCouponDetail>() {
             @Override
-            public ImportCoupon mapRow(ResultSet resultSet, int i) throws SQLException {
-                ImportCoupon importCoupon = new ImportCoupon();
-                importCoupon.setNameSupplier(resultSet.getString(1));
-                importCoupon.setNameItem(resultSet.getString(2));
-                importCoupon.setCount(resultSet.getInt(3));
-                importCoupon.setPriceCoupon(resultSet.getFloat(4));
+            public ImpCouponDetail mapRow(ResultSet resultSet, int i) throws SQLException {
+                ImpCouponDetail importCoupon = new ImpCouponDetail(resultSet.getInt(1),
+                        resultSet.getInt(2),resultSet.getInt(3),resultSet.getFloat(4),
+                        resultSet.getString(5),resultSet.getString(6),resultSet.getInt(7),
+                        resultSet.getString(8)
+                        );
+
                 return importCoupon;
             }
         });
@@ -96,8 +98,16 @@ public class ImportCouponDao {
         String query = " UPDATE  PHIEU_NHAP_HANG SET ENABLE=0 WHERE MA_PHIEU="+id;
         return this.jdbcTemplate.update(query);
     }
-    public int addDetailCoupon(ImportCoupon imp){
-        String query = " INSERT INTO CHI_TIET_PHIEU_NHAP VALUES ('"+imp.getCount()+"',"+imp.getPriceCoupon()+","+imp.getId()+","+imp.getNameSupplier()+",'"+imp.getNameItem()+"')";
+    public int addDetailCoupon(ImpCouponDetail imp){
+        String query = " INSERT INTO CHI_TIET_PHIEU_NHAP VALUES ('"+imp.getCount()+"',"+imp.getPrice()+","+imp.getIdCoupon()+","+imp.getIdSupplier()+",'"+imp.getIdShipment()+"')";
+        return this.jdbcTemplate.update(query);
+    }
+    public int updateDetailCoupon(ImpCouponDetail imp){
+        String query = "UPDATE CHI_TIET_PHIEU_NHAP SET SL_NHAP="+imp.getCount()+",GIA_NHAP="+imp.getPrice()+",MA_CUNG_CAP="+imp.getIdSupplier()+",MA_LO='"+imp.getIdShipment()+"' WHERE MA_CT_PHIEU="+imp.getId();
+        return this.jdbcTemplate.update(query);
+    }
+    public int delDetailCoupon(int id){
+        String query = "DELETE FROM CHI_TIET_PHIEU_NHAP WHERE MA_CT_PHIEU="+id;
         return this.jdbcTemplate.update(query);
     }
 }

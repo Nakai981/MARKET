@@ -33,6 +33,14 @@ public class Bill {
         this.sum_price = sum_price;
     }
 
+    public Bill(int id, String name_item, int count, float price, float sum_price) {
+        this.id = id;
+        this.name_item = name_item;
+        this.count = count;
+        this.price = price;
+        this.sum_price = sum_price;
+    }
+
     public Bill() {
     }
 
@@ -88,8 +96,8 @@ public class Bill {
         return sum_price;
     }
 
-    public void setSum_price(float sum_price) {
-        this.sum_price = sum_price;
+    public void setSum_price() {
+        this.sum_price = getPrice()*getCount();
     }
 
 }

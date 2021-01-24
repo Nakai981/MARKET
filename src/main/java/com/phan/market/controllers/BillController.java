@@ -41,11 +41,16 @@ public class BillController {
     }
     @GetMapping
     public String _default(ModelMap modelMap){
-        bills = DBconfig.connectBillDao().selectBill();
-        billItem = DBconfig.connectBillDao().selectItemById(bills.get(0).getId());
-        getSumItem();
-        copy();
-        default_date();
+        try{
+            bills = DBconfig.connectBillDao().selectBill();
+            billItem = DBconfig.connectBillDao().selectItemById(bills.get(0).getId());
+            getSumItem();
+            copy();
+            default_date();  
+        }catch(Exception e){
+
+        }
+
         modelMap.addAttribute("idS",bills.get(0).getId());
         modelMap.addAttribute("sum",sumPrice);
         modelMap.addAttribute("listBill",bills);

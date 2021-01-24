@@ -13,18 +13,19 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/supplier")
 public class SupplierController {
-
+    private int idSuppliers;
     private List<Supplier> suppliers;
     private int status;
     @GetMapping
     public String _default(ModelMap modelMap){
+        status=0;
         suppliers = DBconfig.connectSupplierDao().supplierList();
         modelMap.addAttribute("listSupplier",suppliers);
         modelMap.addAttribute("btnInsert","Thêm mới");
         return "supplier";
     }
     @GetMapping("/function")
-    public String _default_function(ModelMap modelMap,@RequestParam int txtId, @RequestParam String txtName, @RequestParam String txtDiaChi, @RequestParam int txtSDT){
+    public String _default_function(ModelMap modelMap,@RequestParam String txtName, @RequestParam String txtDiaChi, @RequestParam int txtSDT){
         Supplier sp = new Supplier(txtName,txtSDT,txtDiaChi);
         String html;
         if(status == 0){
@@ -34,8 +35,9 @@ public class SupplierController {
             html = "<div style=\"height: 30px;width: 100%; background: #bd4147\"><p style=\"color:white;padding:7px 15px;font-size: 13px\">Thêm thành công nhà cung cấp</p></div>";
         }else{
             //Update
+             sp.setId(idSuppliers);
             DBconfig.connectSupplierDao().updateSupplier(sp);
-            sp.setId(txtId);
+
             updateAllist(sp,suppliers);
             html = "<div style=\"height: 30px;width: 100%; background: #bd4147\"><p style=\"color:white;padding:7px 15px;font-size: 13px\">Sửa thành công nhà cung cấp</p></div>";
             status = 0;
@@ -43,7 +45,7 @@ public class SupplierController {
         modelMap.addAttribute("btnInsert","Thêm mới");
         modelMap.addAttribute("listSupplier",suppliers);
         modelMap.addAttribute("alert",html);
-        return "supplier";
+        return "redirect:/admin/supplier";
     }
     public void updateAllist(Supplier emp, List<Supplier> emps){
 
@@ -67,10 +69,10 @@ public class SupplierController {
     }
     @GetMapping("/update")
     public String _default_update(ModelMap modelMap, @RequestParam int id){
-        status = 1;
-        Supplier i = getItembyId(id);
-        modelMap.addAttribute("idSupp",id);
-        modelMap.addAttribute("item",i);
+        status=1;
+        idSuppliers = id;
+        Supplier supplier = getItembyId(idSuppliers);
+        modelMap.addAttribute("item",supplier);
         modelMap.addAttribute("listSupplier",suppliers);
         modelMap.addAttribute("btnInsert","Sửa nhà cung cấp");
         return "supplier";
@@ -85,6 +87,6 @@ public class SupplierController {
         }
         modelMap.addAttribute("listSupplier",suppliers);
         modelMap.addAttribute("btnInsert","Thêm mới");
-        return "supplier";
+        return "redirect:/admin/supplier";
     }
 }

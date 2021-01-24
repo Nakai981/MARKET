@@ -1,5 +1,6 @@
 package com.phan.market.dao;
 
+import com.phan.market.entity.Bill;
 import com.phan.market.entity.ExpiryDate;
 import com.phan.market.entity.Item;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,16 +34,18 @@ public class ItemDao {
 //    }
     public List<Item> selectItemBySearch(String name){
         List<Item> items;
-        String query = "SELECT * FROM MAT_HANG WHERE TEN_MH LIKE '%"+name+"%'";
+        String query = "SELECT TOP 5 * FROM MAT_HANG WHERE ENABLE=1 AND TEN_MH LIKE '%"+name+"%'";
         items = this.jdbcTemplate.query(query, new RowMapper<Item>() {
             @Override
             public Item mapRow(ResultSet resultSet, int i) throws SQLException {
                 Item item = new Item(resultSet.getString(2),resultSet.getString(3));
+                item.setId(resultSet.getString(1));
                 return item;
             }
         });
         return items;
     }
+
         public int addItem(final Item i){
             String query = "INSERT INTO MAT_HANG VALUES (N'"+i.getName()+"',N'"+i.getUnit()+"',1)";
             return this.jdbcTemplate.update(query);

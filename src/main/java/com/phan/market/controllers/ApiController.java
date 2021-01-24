@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 public class ApiController  {
 
-    @RequestMapping(value={"/admin/coupons/api/coupon1","/admin/api/coupon1"}, produces = "text/plain;charset=UTF-8",method = RequestMethod.GET)
+    @RequestMapping(value={"/admin/coupons/api/coupon1","/admin/coupons/detail/api/coupon1","/admin/api/coupon1"}, produces = "text/plain;charset=UTF-8",method = RequestMethod.GET)
     @ResponseBody
     public String selectCoupon(@RequestParam String txtNameSearch){
         String html ="";
@@ -30,7 +30,7 @@ public class ApiController  {
         return html;
     }
 
-    @RequestMapping(value={"/admin/coupons/api/shipment","/admin/api/shipment"}, produces = "text/plain;charset=UTF-8",method = RequestMethod.GET)
+    @RequestMapping(value={"/admin/coupons/api/shipment","/admin/inventory/api/shipment","/admin/coupons/detail/api/shipment","/admin/api/shipment"}, produces = "text/plain;charset=UTF-8",method = RequestMethod.GET)
     @ResponseBody
     public String selectId(@RequestParam String txtIdSearch){
         String html ="";
@@ -51,7 +51,7 @@ public class ApiController  {
 //        return html;
 //    }
 
-    @RequestMapping(value="/admin/api/item", produces = "text/plain;charset=UTF-8",method = RequestMethod.GET)
+    @RequestMapping(value={"/admin/api/item","/admin/items/api/item"}, produces = "text/plain;charset=UTF-8",method = RequestMethod.GET)
     @ResponseBody
     public String searchByItemName(@RequestParam String txtName){
         String html="";
@@ -68,9 +68,9 @@ public class ApiController  {
                 html = html+"<tr>" +
                         "<td>"+imp.getName()+"</td>" +
                         "<td>"+imp.getUnit()+"</td>" +
-                        " <td><a style=\"color: #403866\" href=\"/admin/items/update?id=${i.getId()}\"><i class=\"fas fa-pen-alt\" onclick=\"swipResult3()\"> </i></a></td>\n" +
-                        "                                    <td><a style=\"color: #bd4147\"href=\"/admin/items/delete?id=${i.getId()}\"><i class=\"fas fa-trash-alt\"></i></a></td>\n" +
-                        "                                    <td><a style=\"color: #1e7e34\"href=\"#\"><i class=\"fas fa-arrow-right\"></i></a></td>"+
+                        " <td><a style=\"color: #403866\" href=\"/admin/items/update?id="+imp.getId()+"\"><i class=\"fas fa-pen-alt\" onclick=\"swipResult3()\"> </i></a></td>\n" +
+                        "                                    <td><a style=\"color: #bd4147\"href='#' onclick='delAcc("+imp.getId()+")'><i class=\"fas fa-trash-alt\"></i></a></td>"+
+                        "                                    <td><a style=\"color: #1e7e34\"href=\"/admin/items/addShipment?id="+imp.getId()+"\"><i class=\"fas fa-arrow-right\"></i></a></td>\n" +
                         "</tr>";
             }
             html = html + "</table>";
@@ -79,6 +79,18 @@ public class ApiController  {
         }
         return html;
     }
+    public String printItem(List<Item> items){
+        String html="";
+        if(items.size()>0){
+            for(Item imp:items){
+                html+= "<li>"+imp.getName()+"</li>";
+            }
+        }else{
+            html = html + "<i style='margin-left:5px'>Không có dữ liệu</i>";
+        }
+        return html;
+    }
+
 
 
 

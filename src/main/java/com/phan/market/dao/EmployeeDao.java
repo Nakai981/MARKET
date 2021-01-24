@@ -73,7 +73,7 @@ public class EmployeeDao {
     }
     public Employee getIdEmpolyeeByName(String name) {
         Employee emp;
-        String query = "SELECT MA_NV FROM NHAN_VIEN WHERE TEN_DANG_NHAP='"+name+"' AND ENABLE=1 AND MA_CV=1";
+        String query = "SELECT MA_NV FROM NHAN_VIEN WHERE TEN_DANG_NHAP='"+name+"' AND ENABLE=1 AND MA_CV=2";
 
         emp = this.jdbcTemplate.queryForObject(query, new RowMapper<Employee>() {
             @Override

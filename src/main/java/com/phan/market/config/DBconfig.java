@@ -34,4 +34,8 @@ public class DBconfig {
         ExpiryDateDao expiryDateDao = new ExpiryDateDao(DBconfig.dbconnect().getJdbcTemplate());
         return expiryDateDao;
     }
+    public static InventoryDao connectInventoryDao(){
+        InventoryDao inventoryDao = new InventoryDao(DBconfig.dbconnect().getJdbcTemplate());
+        return inventoryDao;
+    }
 }
