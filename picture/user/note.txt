@@ -1,0 +1,14 @@
+1.png trang user
+gồm các chức năng tạo hóa đơn và báo cáo
+báo cáo(chưa hoàn thiện)
+
+B1: Tạo hóa đơn 
+B2: Tìm kiếm sản phẩm: 2.png
+Có thể chỉnh sửa số lượng 
+
+Chức năng hủy, để xóa hết các dữ liệu đã chọn
+hoặc xóa từng danh mục sản phẩm
+
+-- Chức năng thanh toán
+
+Thành công thì thông báo 

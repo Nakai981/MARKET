@@ -1,0 +1,9 @@
+Hệ thống được phân quyền: admin và user
+1.png - Đăng nhập tài khoản 
+-- Khi ấn đăng nhập: Báo lỗi khi người dùng không nhập user và password
+or báo điền thông tin sai
+
+2.png - Trang điều hướng 
+- Cho phép vào admin khi người dùng có quyền admin, tương tự user cũng vậy
+3.png - Trang báo lỗi 
+- Báo lỗi khi người dùng không vào đúng quyền hạn

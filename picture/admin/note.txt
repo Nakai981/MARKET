@@ -1,0 +1,50 @@
+1.png - Trang admin gồm các chức năng chính
+-- quản lý tài khoản
+-- quản lý mặt hàng-lô hàng
+-- quản lý nhà cung cấp
+-- quản lý phiếu nhập
+-- xem thông tin hóa đơn
+-- lập phiếu kiểm kê
+
+--- Trong mục home admin thì có 2 chức năng
+---- Lọc danh sách mặt hàng hết hạn và đang hết hạn theo từng tháng(Sử dụng stored procedure: DS_MH_HET_HAN)
+---- Xem doanh thu theo ngày/tháng/năm(Sử dụng stored procedure: DOANH_THU_THEO_NGAY/THANG/NAM)
+
+2.png - Trang quản lý tài khoản có phân trang
+
+-- Xem thông tin tài khoản của từng nhân viên và các admin
+-- Thêm, chỉnh sửa, xóa tài khoản
+
+3.1.png -- Trang quản lý mặt hàng và lô hàng
+	1 mặt hàng có n lô hàng
+
+-- Tìm kiếm mặt hàng
+-- Thêm sửa xóa mặt hàng
+-- Thêm, sửa, xóa lô hàng theo mặt hàng như hình 3.2.png
+
+4.png -- trang quản lý nhà cung cấp cho mặt hàng
+
+-- Xem thông tin nhà cung cấp
+-- Thêm, chỉnh sửa, xóa nhà cung cấp
+
+5.png -- trang quản lý nhà phiếu nhập cho mặt hàng
+
+-- Tạo phiếu nhập hàng và thêm các thông tin các mặt hàng có trong phiếu
+-- Kiểm tra mã lô, nhà cung cấp có tồn tại trong database
+
+6.png -- Xem thông tin hóa đơn và chi tiết từng sản phẩm đc bán
+--Lọc hóa đơn theo ngày 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
